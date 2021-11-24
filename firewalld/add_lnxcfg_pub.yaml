@@ -1,0 +1,8 @@
+---
+- name: add pubkey
+  hosts: intel-nuc
+  tasks:
+    - name: what she said
+      lineinfile:
+        path: /root/.ssh/authorized_keys
+        line: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDm0n74K9g3p4EIndOm97LPlTpuM1efFinAoX832el5Yrcj5a+BE6TJNRFwixp9sTyHAJlxa2ANk/6MDQtnmmOQxxT5k/+bL6A57GeSaFZ2El98O2M15/KAuIiApkZwN7+7jRunnF05cmOXvqU2oypLe/GlgbM96KR7i1Qz5ovNqTpDgGx5V/xsIul9jobVeDChPk3TKM1Gr21rM0c4bYObhSVfCH+1cbYO+bE78E5/fWRuraFspe0TzfZSbR8+OaIvP0sktu7wvA+DlZV7siYWNPxDUsaypEy/JG0UJlufhc+EjyiYK9yVWc/tG3jM8glj2eXne1nr0BwTQsaluKiF lnxcfg@lasse-GB-BXi7-5500"

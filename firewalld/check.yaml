@@ -1,0 +1,39 @@
+---
+ - name: firewalld setup
+   hosts: intel-nuc
+   tasks:
+    - name: is firewalld running
+      service:
+        name: firewalld
+        state: started
+    - name:
+      firewalld:
+        rich_rule: rule family=ipv4 source address="{{item.host}}" service name="ssh" accept
+        permanent: yes
+        immediate: yes
+        zone: public
+        state: enabled
+      with_items:
+        #- host: 192.172.10.8/32
+        - host: 192.172.10.10/32
+        - host: 100.10.1.2/32
+      tags: ssh_from
+    - name:
+      firewalld:
+        rich_rule: rule family=ipv4 source address="{{item.host}}" reject
+        permanent: yes
+        immediate: yes
+        zone: public
+        state: enabled
+      with_items:
+        - host: 192.172.10.8/32
+      tags: ssh_from_denied
+
+
+    - name: set log-denied
+      lineinfile:
+        path: /etc/firewalld/firewalld.conf
+        regexp: '^LogDenied='
+        line: LogDenied=on
+      tags: logdenied
+        
